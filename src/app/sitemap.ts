@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/constants";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://kellycarinaadvocacia.com.br";
+  const baseUrl = SITE.url;
 
   return [
     {

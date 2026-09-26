@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X, Moon, Sun, MessageCircle, ChevronDown } from "lucide-react";
 import { NAV, CONTACT } from "@/lib/constants";
 
@@ -31,6 +32,7 @@ function WhatsAppBtn({
 }
 
 export default function Header() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -41,6 +43,13 @@ export default function Header() {
     return "light";
   });
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+
+  const getLinkHref = (href: string) => {
+    if (href.startsWith("#") && pathname !== "/") {
+      return `/${href}`;
+    }
+    return href;
+  };
 
   // Theme init + scroll listener
   useEffect(() => {
@@ -85,7 +94,7 @@ export default function Header() {
           {/* ---------- Logo Container (bloco separado, dobro do tamanho) ---------- */}
           <div className="flex-shrink-0 flex items-center">
             <a
-              href="#hero"
+              href={pathname === "/" ? "#hero" : "/"}
               className="group flex items-center transition-transform duration-200 hover:opacity-90"
             >
               <div className="relative h-16 w-16 sm:h-20 sm:w-20 md:h-20 md:w-20">
@@ -112,7 +121,7 @@ export default function Header() {
                   onMouseLeave={() => setHoveredItem(null)}
                 >
                   <a
-                    href={item.href}
+                    href={getLinkHref(item.href)}
                     className="inline-flex items-center gap-1 rounded-lg px-3 py-2 font-[family-name:var(--font-heading)] text-sm text-[var(--text-primary)] transition-colors duration-200 hover:text-[#C9A84C]"
                   >
                     {item.label}
@@ -131,7 +140,7 @@ export default function Header() {
                       {item.children!.map((child) => (
                         <li key={child.href}>
                           <a
-                            href={child.href}
+                            href={getLinkHref(child.href)}
                             className="block rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] transition-colors duration-200 hover:bg-[#C9A84C]/10 hover:text-[#C9A84C]"
                           >
                             {child.label}
@@ -235,7 +244,7 @@ export default function Header() {
                           {item.children!.map((child) => (
                             <li key={child.href}>
                               <a
-                                href={child.href}
+                                href={getLinkHref(child.href)}
                                 onClick={closeMenu}
                                 className="block rounded-lg px-3 py-2.5 text-sm text-[var(--text-secondary)] transition-colors duration-200 hover:text-[#C9A84C] hover:bg-[#C9A84C]/5"
                               >
@@ -248,7 +257,7 @@ export default function Header() {
                     </div>
                   ) : (
                     <a
-                      href={item.href}
+                      href={getLinkHref(item.href)}
                       onClick={closeMenu}
                       className="block rounded-lg px-3 py-3 font-[family-name:var(--font-heading)] text-base font-semibold text-[var(--text-primary)] transition-colors duration-200 hover:text-[#C9A84C]"
                     >

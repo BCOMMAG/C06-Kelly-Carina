@@ -318,6 +318,7 @@ export const NAV = [
   },
   { label: "Como Funciona", href: "#processo" },
   { label: "Depoimentos", href: "#depoimentos" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "#faq" },
   { label: "Contato", href: "#contato" },
   { label: "Links Bio", href: "/links" },

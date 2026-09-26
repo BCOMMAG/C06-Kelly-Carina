@@ -3,10 +3,11 @@ import { CONTACT, SOCIALS, SITE } from '@/lib/constants';
 import GeometricBackground from '@/components/GeometricBackground';
 
 const quickLinks = [
-  { label: 'Início', href: '#hero' },
-  { label: 'Sobre', href: '#sobre' },
-  { label: 'Áreas de Atuação', href: '#servicos' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'Início', href: '/#hero' },
+  { label: 'Sobre', href: '/#sobre' },
+  { label: 'Áreas de Atuação', href: '/#servicos' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contato', href: '/#contato' },
 ];
 
 export default function Footer() {

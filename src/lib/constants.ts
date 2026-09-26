@@ -8,7 +8,7 @@ export const SITE = {
   shortName: "KC Advocacia",
   description:
     "Assessoria jurídica especializada em Direito Previdenciário em Curitiba e toda região no Paraná, Santa Catarina e São Paulo.",
-  url: "https://kelly-carina.pages.dev",
+  url: "https://kellycarina.adv.br",
   ogImage: "/og-image_1_optimized_300.jpg",
   locale: "pt_BR",
 } as const;

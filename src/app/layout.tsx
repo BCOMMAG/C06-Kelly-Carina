@@ -48,21 +48,22 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/Favicon-android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/Favicon-android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico?v=2" },
+      { url: "/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png?v=2", sizes: "16x16", type: "image/png" },
+      { url: "/Favicon-android-chrome-192x192.png?v=2", sizes: "192x192", type: "image/png" },
+      { url: "/Favicon-android-chrome-512x512.png?v=2", sizes: "512x512", type: "image/png" },
     ],
     apple: [
-      { url: "/Favicon-apple-touch-icon180x180.png", sizes: "180x180", type: "image/png" },
+      { url: "/Favicon-apple-touch-icon180x180.png?v=2", sizes: "180x180", type: "image/png" },
     ],
     other: [
       {
         rel: "apple-touch-icon-precomposed",
-        url: "/Favicon-apple-touch-icon180x180.png",
+        url: "/Favicon-apple-touch-icon180x180.png?v=2",
       },
     ],
+    shortcut: ["/favicon.ico?v=2"],
   },
   manifest: "/site.webmanifest",
   robots: {
@@ -86,10 +87,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" data-theme="light" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/Favicon-apple-touch-icon180x180.png" />
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/Favicon-apple-touch-icon180x180.png?v=2" />
+        <link rel="shortcut icon" href="/favicon.ico?v=2" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta property="og:image" content={`${SITE.url}${SITE.ogImage}`} />
         <meta property="og:image:secure_url" content={`${SITE.url}${SITE.ogImage}`} />

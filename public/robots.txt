@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kelly-carina.pages.dev/sitemap.xml
+Sitemap: https://kellycarina.adv.br/sitemap.xml

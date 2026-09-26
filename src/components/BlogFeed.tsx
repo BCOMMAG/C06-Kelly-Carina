@@ -111,21 +111,38 @@ export default function BlogFeed() {
               )}
             </div>
 
-            {/* Categorias Tabs */}
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
-              {BLOG_CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 ${
-                    selectedCategory === cat
-                      ? "bg-[#C9A84C] text-black shadow-md font-bold"
-                      : "bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[#C9A84C] hover:bg-[#C9A84C]/10 border border-[var(--border-color)]"
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
+            {/* Categorias - Flex Wrap para aparecer 100% visível e selecionável no mobile */}
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              {BLOG_CATEGORIES.map((cat) => {
+                const isSelected = selectedCategory === cat;
+                const count =
+                  cat === "Todas"
+                    ? BLOG_POSTS.length
+                    : BLOG_POSTS.filter((p) => p.category === cat).length;
+
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-95 ${
+                      isSelected
+                        ? "bg-[#C9A84C] text-black shadow-md font-bold ring-2 ring-[#C9A84C]/50"
+                        : "bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[#C9A84C] hover:bg-[#C9A84C]/10 border border-[var(--border-color)]"
+                    }`}
+                  >
+                    <span>{cat}</span>
+                    <span
+                      className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold transition-colors ${
+                        isSelected
+                          ? "bg-black/20 text-black"
+                          : "bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-color)]/60"
+                      }`}
+                    >
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>

@@ -75,12 +75,12 @@ export default function Hero() {
         />
       </div>
 
-      {/* Mobile Background Image — header_Desktop.jpeg (Preenchendo completamente) */}
+      {/* Mobile Background Image — header_mobile.jpeg (Preenchendo completamente) */}
       <div
         className="lg:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden"
       >
         <Image
-          src="/header_Desktop.jpeg"
+          src="/header_mobile.jpeg"
           alt="Kelly Carina Advocacia"
           fill
           className="object-cover object-top"

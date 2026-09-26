@@ -3,6 +3,8 @@
 // Fonte de toda a verdade. Nada hardcoded.
 // ============================================
 
+import { BLOG_TAXONOMY } from "@/lib/blog";
+
 export const SITE = {
   name: "Advocacia Kelly Carina",
   shortName: "KC Advocacia",
@@ -318,7 +320,17 @@ export const NAV = [
   },
   { label: "Como Funciona", href: "#processo" },
   { label: "Depoimentos", href: "#depoimentos" },
-  { label: "Blog", href: "/blog" },
+  {
+    label: "Blog",
+    href: "/blog",
+    children: [
+      { label: "Todos os Artigos", href: "/blog" },
+      ...BLOG_TAXONOMY.map((cat) => ({
+        label: cat,
+        href: `/blog?categoria=${encodeURIComponent(cat)}`,
+      })),
+    ],
+  },
   { label: "FAQ", href: "#faq" },
   { label: "Contato", href: "#contato" },
   { label: "Links Bio", href: "/links" },

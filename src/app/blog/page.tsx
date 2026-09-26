@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -46,7 +47,9 @@ export default function BlogPage() {
     <>
       <Header />
       <main>
-        <BlogFeed />
+        <Suspense fallback={<div className="min-h-screen pt-32 text-center text-sm text-gray-500">Carregando artigos do Blog...</div>}>
+          <BlogFeed />
+        </Suspense>
       </main>
       <Footer />
       <WhatsAppFloat />

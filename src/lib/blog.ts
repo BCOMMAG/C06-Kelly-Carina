@@ -24,12 +24,23 @@ export interface BlogSection {
   };
 }
 
+// Categorias oficiais de artigos do Blog (Fonte única da verdade)
+export const BLOG_TAXONOMY = [
+  "Aposentadorias",
+  "BPC / LOAS",
+  "Incapacidade & Saúde",
+  "Pensão por Morte",
+  "Revisões",
+] as const;
+
+export type BlogCategory = typeof BLOG_TAXONOMY[number];
+
 export interface BlogPost {
   slug: string;
   title: string;
   subtitle: string;
   excerpt: string;
-  category: "Aposentadorias" | "BPC / LOAS" | "Incapacidade & Saúde" | "Pensão por Morte" | "Revisões";
+  category: BlogCategory;
   date: string;
   updatedDate: string;
   readingTime: string;
@@ -55,11 +66,7 @@ export interface BlogPost {
 
 export const BLOG_CATEGORIES = [
   "Todas",
-  "Aposentadorias",
-  "BPC / LOAS",
-  "Incapacidade & Saúde",
-  "Pensão por Morte",
-  "Revisões",
+  ...BLOG_TAXONOMY,
 ] as const;
 
 export const BLOG_POSTS: BlogPost[] = [

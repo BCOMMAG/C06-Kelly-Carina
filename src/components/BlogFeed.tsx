@@ -1,17 +1,40 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Search, Clock, Calendar, ArrowRight, BookOpen, Sparkles, CheckCircle2, MessageCircle, Send } from "lucide-react";
 import { BLOG_POSTS, BLOG_CATEGORIES, BlogPost } from "@/lib/blog";
 import { CONTACT, SOCIALS } from "@/lib/constants";
 
 export default function BlogFeed() {
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("categoria");
+
   const [selectedCategory, setSelectedCategory] = useState<string>("Todas");
   const [searchQuery, setSearchQuery] = useState("");
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
+
+  // Sincroniza a categoria se vier pela URL (ex: /blog?categoria=Aposentadorias)
+  useEffect(() => {
+    if (categoryParam) {
+      try {
+        const decoded = decodeURIComponent(categoryParam);
+        const found = BLOG_CATEGORIES.find(
+          (c) => c.toLowerCase() === decoded.toLowerCase()
+        );
+        if (found) {
+          setSelectedCategory(found);
+        }
+      } catch (err) {
+        // Fallback seguro caso haja erro na decodificação
+      }
+    } else {
+      setSelectedCategory("Todas");
+    }
+  }, [categoryParam]);
 
   // Filtragem dinâmica de artigos
   const filteredPosts = useMemo(() => {

@@ -107,7 +107,7 @@ export default function Contact() {
               variant="white"
               text="Agende Sua Consulta"
               helperText="Atendimento presencial ou online com horário marcado."
-              message="Olá, Dra. Kelly! Gostaria de agendar uma consulta no seu escritório."
+              message="Olá! Gostaria de agendar uma consulta com a advogada no seu escritório."
               className="!pt-2"
             />
           </div>

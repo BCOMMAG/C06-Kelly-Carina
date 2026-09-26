@@ -8,7 +8,6 @@ import { NAV, CONTACT } from "@/lib/constants";
 /* ---------- WhatsApp button (reused) ---------- */
 function WhatsAppBtn({
   className = "",
-  isScrolled = false,
 }: {
   className?: string;
   isScrolled?: boolean;
@@ -18,25 +17,15 @@ function WhatsAppBtn({
       href={CONTACT.whatsappLink}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-1.5 sm:gap-2 rounded-full bg-white px-3.5 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 ${
-        isScrolled
-          ? "border-2 border-[#25D366] text-[#25D366] hover:bg-[#F4FBF6] hover:border-[#20BA5A] shadow-[0_2px_14px_rgba(37,211,102,0.25)] hover:shadow-[0_4px_18px_rgba(37,211,102,0.45)]"
-          : "border-2 border-[#C9A84C] text-[#8B6914] hover:border-[#8B6914] hover:bg-[#FFFDF7] shadow-[0_2px_14px_rgba(201,168,76,0.3)] hover:shadow-[0_4px_18px_rgba(201,168,76,0.5)]"
-      } ${className}`}
+      className={`inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-3.5 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 bg-[#25D366] hover:bg-[#20ba59] text-white shadow-[0_2px_14px_rgba(37,211,102,0.35)] hover:shadow-[0_4px_18px_rgba(37,211,102,0.5)] ${className}`}
       style={{
-        boxShadow: isScrolled
-          ? "0 2px 14px rgba(37, 211, 102, 0.25)"
-          : "0 2px 14px rgba(201, 168, 76, 0.3)",
+        boxShadow: "0 2px 14px rgba(37, 211, 102, 0.35)",
       }}
     >
       <MessageCircle
-        className={`h-4 w-4 shrink-0 transition-colors duration-300 ${
-          isScrolled
-            ? "text-[#25D366] fill-[#25D366]/20"
-            : "text-[#C9A84C] fill-[#C9A84C]/20"
-        }`}
+        className="h-4 w-4 shrink-0 text-white fill-white/20"
       />
-      <span className="transition-colors duration-300">WhatsApp</span>
+      <span className="text-white">WhatsApp</span>
     </a>
   );
 }

@@ -184,9 +184,9 @@ export default function About() {
             <SectionCTA
               align="left"
               variant="white"
-              text="Agendar Atendimento com a Dra. Kelly"
+              text="Atendimento com a Advogada"
               helperText="Atendimento consultivo individualizado e com total sigilo profissional."
-              message="Olá, Dra. Kelly! Conheci sua trajetória pelo site e gostaria de agendar um atendimento para avaliar o meu caso."
+              message="Olá! Conheci sua trajetória pelo site e gostaria de agendar um atendimento para avaliar o meu caso."
               className="!pt-3"
             />
           </div>

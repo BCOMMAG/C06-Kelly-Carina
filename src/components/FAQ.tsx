@@ -74,7 +74,7 @@ export default function FAQSection() {
         <SectionCTA
           text="Esclarecer Dúvidas pelo WhatsApp"
           helperText="Sua dúvida não foi respondida acima? Fale diretamente com nossa assessoria jurídica."
-          message="Olá, Dra. Kelly! Tenho uma dúvida específica sobre meu caso e gostaria de esclarecê-la."
+          message="Olá! Tenho uma dúvida específica sobre meu caso e gostaria de esclarecê-la com a advogada."
           className="mt-6"
         />
       </div>

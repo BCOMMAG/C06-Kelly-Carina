@@ -36,6 +36,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: SITE.name,
+        type: "image/jpeg",
       },
     ],
   },
@@ -66,6 +67,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" data-theme="light" suppressHydrationWarning>
       <head>
+        <meta property="og:image" content={`${SITE.url}${SITE.ogImage}`} />
+        <meta property="og:image:secure_url" content={`${SITE.url}${SITE.ogImage}`} />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={SITE.name} />
         <script
           dangerouslySetInnerHTML={{
             __html: `

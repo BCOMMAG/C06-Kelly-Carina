@@ -104,14 +104,14 @@ export default function EducationSection() {
 
                     <a
                       href={`https://wa.me/5541998702590?text=${encodeURIComponent(
-                        `Olá, Dra. Kelly! Gostaria de saber mais sobre ${item.title} e como isso se aplica ao meu caso no INSS.`
+                        `Olá! Gostaria de saber mais sobre ${item.title} e como isso se aplica ao meu caso no INSS.`
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 mt-3 text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 group/link hover:opacity-90"
                       style={{ color: 'var(--color-gold)' }}
                     >
-                      <span className="group-hover/link:underline">Saiba mais...</span>
+                      <span className="group-hover/link:underline">Saiba mais com a Advogada</span>
                       <svg
                         className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1"
                         viewBox="0 0 24 24"
@@ -137,7 +137,7 @@ export default function EducationSection() {
           variant="white"
           text="Consultar Viabilidade do Meu Caso"
           helperText="Passou por perícia indevida, corte de benefício ou atraso do INSS? Avaliamos suas opções legais."
-          message="Olá, Dra. Kelly! Identifiquei uma situação semelhante à minha no site e gostaria de uma orientação jurídica."
+          message="Olá! Identifiquei uma situação semelhante à minha no site e gostaria de uma orientação jurídica com a advogada."
           className="mt-6"
         />
       </div>

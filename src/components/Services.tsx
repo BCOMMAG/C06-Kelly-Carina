@@ -111,14 +111,14 @@ export default function ServicesSection() {
 
                     <a
                       href={`https://wa.me/5541998702590?text=${encodeURIComponent(
-                        `Olá, Dra. Kelly! Gostaria de saber mais sobre ${service.title} e entender meus direitos previdenciários.`
+                        `Olá! Gostaria de saber mais sobre ${service.title} e entender meus direitos previdenciários.`
                       )}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 mt-3 text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 group/link hover:opacity-90"
                       style={{ color: 'var(--color-gold)' }}
                     >
-                      <span className="group-hover/link:underline">Saiba mais...</span>
+                      <span className="group-hover/link:underline">Saiba mais com a Advogada</span>
                       <svg
                         className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1"
                         viewBox="0 0 24 24"
@@ -143,7 +143,7 @@ export default function ServicesSection() {
         <SectionCTA
           text="Solicitar Análise de Benefício"
           helperText="Dúvidas sobre regras de transição, cálculo ou documentação necessária? Consulte nossa especialista."
-          message="Olá, Dra. Kelly! Gostaria de consultar a viabilidade do meu benefício previdenciário."
+          message="Olá! Gostaria de consultar a viabilidade do meu benefício previdenciário com a advogada."
           className="mt-6"
         />
       </div>

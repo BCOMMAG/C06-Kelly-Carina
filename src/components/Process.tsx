@@ -99,7 +99,7 @@ export default function Process() {
           variant="white"
           text="Iniciar Análise do Meu Processo"
           helperText="Dê o primeiro passo para garantir seus direitos com acompanhamento dedicado do início ao fim."
-          message="Olá, Dra. Kelly! Gostaria de dar o primeiro passo e enviar minhas dúvidas/documentos para análise."
+          message="Olá! Gostaria de dar o primeiro passo e enviar minhas dúvidas/documentos para análise da advogada."
           className="mt-6"
         />
       </div>

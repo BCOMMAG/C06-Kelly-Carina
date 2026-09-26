@@ -14,7 +14,7 @@ interface SectionCTAProps {
 export default function SectionCTA({
   text,
   helperText,
-  message = 'Olá, Dra. Kelly! Gostaria de conversar com você sobre o meu caso previdenciário.',
+  message = 'Olá! Gostaria de conversar com a advogada sobre o meu caso previdenciário.',
   className = '',
   align = 'center',
   variant = 'gold',

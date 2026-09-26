@@ -7,9 +7,9 @@ export const SITE = {
   name: "Advocacia Kelly Carina",
   shortName: "KC Advocacia",
   description:
-    "Assessoria jurídica especializada em Direito Previdenciário. Mais de 10 anos de experiência em Curitiba/PR.",
+    "Assessoria jurídica especializada em Direito Previdenciário em Curitiba e toda região no Paraná, Santa Catarina e São Paulo.",
   url: "https://kellycarinaadvocacia.com.br",
-  ogImage: "/og-image.png",
+  ogImage: "/og-image_1_optimized_300.jpg",
   locale: "pt_BR",
 } as const;
 
@@ -38,14 +38,14 @@ export const HOURS = {
 } as const;
 
 export const HERO = {
-  tagline: "DEFENDENDO SEUS DIREITOS, SECURANDO SEU FUTURO.",
+  tagline: "DEFENDENDO SEUS DIREITOS, CUIDANDO DO SEU FUTURO!!",
   subtitle:
-    "Assessoria jurídica especializada em Direito Previdenciário em Curitiba/PR.",
+    "Assessoria jurídica especializada em Direito Previdenciário em Curitiba e toda região no Paraná, Santa Catarina e São Paulo.",
   cta: "AGENDE SUA CONSULTA",
 } as const;
 
 export const ABOUT = {
-  title: "QUEM É A DRA. KELLY?",
+  title: "Conheça Kelly Carina – Advogada",
   bio: `Com mais de 10 anos de experiência em Direito Previdenciário, a Dra. Kelly Carina possui pós-graduações em Direito Previdenciário e Direito Aplicado. Formação acadêmica sólida e constante atualização para oferecer a melhor assessoria jurídica aos seus clientes.`,
   highlights: [
     "Mais de 10 anos de experiência",
@@ -320,4 +320,5 @@ export const NAV = [
   { label: "Depoimentos", href: "#depoimentos" },
   { label: "FAQ", href: "#faq" },
   { label: "Contato", href: "#contato" },
+  { label: "Links Bio", href: "/links" },
 ] as const;

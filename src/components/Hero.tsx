@@ -19,7 +19,7 @@ export default function Hero() {
   const desktopBgRef = useRef<HTMLDivElement>(null);
 
   const whatsappHeroUrl = `https://wa.me/5541998702590?text=${encodeURIComponent(
-    'Olá, Dra. Kelly! Gostaria de conversar com você sobre o meu caso previdenciário.'
+    'Olá! Gostaria de conversar com a advogada sobre o meu caso previdenciário.'
   )}`;
 
   useEffect(() => {
@@ -75,12 +75,12 @@ export default function Hero() {
         />
       </div>
 
-      {/* Mobile Background Image — header_mobile.jpeg (Apenas Mobile, preenchendo completamente) */}
+      {/* Mobile Background Image — header_Desktop.jpeg (Preenchendo completamente) */}
       <div
         className="lg:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden"
       >
         <Image
-          src="/header_mobile.jpeg"
+          src="/header_Desktop.jpeg"
           alt="Kelly Carina Advocacia"
           fill
           className="object-cover object-top"
@@ -133,7 +133,7 @@ export default function Hero() {
                 <span className="hidden lg:inline">
                   DEFENDENDO SEUS<br />
                   DIREITOS!!<br />
-                  SECURANDO SEU FUTURO!!
+                  CUIDANDO DO SEU FUTURO!!
                 </span>
               </h1>
 

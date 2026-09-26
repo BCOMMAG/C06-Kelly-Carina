@@ -65,7 +65,7 @@ const iconMap: Record<string, React.ReactNode> = {
 /* ── WhatsApp URL com mensagem pré-definida ───────── */
 
 const WHATSAPP_PREFILLED_TEXT =
-  'Olá, Dra. Kelly! Vi o seu perfil e gostaria de conversar sobre o meu caso para entender os meus direitos previdenciários.';
+  'Olá! Vi o perfil e gostaria de conversar com a advogada sobre o meu caso para entender os meus direitos previdenciários.';
 const WHATSAPP_PREFILLED_URL = `https://wa.me/5541998702590?text=${encodeURIComponent(
   WHATSAPP_PREFILLED_TEXT
 )}`;

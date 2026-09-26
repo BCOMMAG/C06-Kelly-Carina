@@ -262,7 +262,7 @@ export default function Reviews() {
         <SectionCTA
           text="Conversar com a Equipe Jurídica"
           helperText="Junte-se às centenas de clientes satisfeitos que conquistaram seus direitos previdenciários."
-          message="Olá! Gostaria de conversar com a equipe jurídica da Dra. Kelly Carina sobre minha aposentadoria/benefício."
+          message="Olá! Gostaria de conversar com a assessoria jurídica sobre minha aposentadoria/benefício."
           className="mt-6"
         />
       </div>

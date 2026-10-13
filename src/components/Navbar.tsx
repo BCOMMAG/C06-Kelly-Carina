@@ -61,12 +61,11 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Escolhe a logo de acordo com o estado de scroll e tema
-  const currentLogo = !isScrolled
-    ? "/logo_sem_fundo_usarnomodoescuro.png"
-    : theme === "dark"
-    ? "/logo_sem_fundo_usarnomodoescuro.png"
-    : "/logo_sem_fundo_usarnomodoclaro.png";
+  // Escolhe a logo de acordo com o tema
+  const currentLogo =
+    theme === "dark"
+      ? "/logo_sem_fundo_usarnomodoescuro.png"
+      : "/logo_sem_fundo_usarnomodoclaro.png";
 
   const drawerLogo =
     theme === "dark"
@@ -145,9 +144,7 @@ export function Navbar() {
 
             {/* Menu Desktop */}
             <nav
-              className={`hidden lg:flex items-center gap-6 xl:gap-8 text-[0.875rem] font-heading uppercase tracking-wider transition-colors duration-300 ${
-                !isScrolled ? "text-white/95" : "text-[var(--text-main)]"
-              }`}
+              className="hidden lg:flex items-center gap-6 xl:gap-8 text-[0.875rem] font-heading uppercase tracking-wider text-[var(--text-main)] transition-colors duration-300"
             >
               <Link href="#inicio" className="transition-colors editorial-link hover:text-[var(--accent)] font-semibold">
                 Início

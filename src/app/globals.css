@@ -197,6 +197,27 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   background: #B8963E;
 }
 
+/* Animação Marquee Contínua para Avaliações (Loop Automático) */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 50s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* Animações utilitárias */
 @keyframes fadeInDown {
   from {

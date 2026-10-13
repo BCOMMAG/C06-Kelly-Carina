@@ -13,7 +13,6 @@ if (typeof window !== "undefined") {
 }
 
 export function ReviewsSection() {
-  const marqueeRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
@@ -36,20 +35,6 @@ export function ReviewsSection() {
             },
           }
         );
-      }
-
-      // 2. Parallax de scroll na esteira contínua
-      if (marqueeRef.current) {
-        gsap.to(marqueeRef.current, {
-          x: -120,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
       }
     },
     { scope: sectionRef }
@@ -104,9 +89,9 @@ export function ReviewsSection() {
         </div>
       </div>
 
-      {/* Faixa Marquee de Cards Contínuos */}
-      <div ref={marqueeRef} className="w-full overflow-hidden py-4 will-change-transform">
-        <div className="flex gap-6 w-max animate-none">
+      {/* Faixa Marquee de Cards Contínuos com Loop Automático Infinito */}
+      <div className="w-full overflow-hidden py-4">
+        <div className="animate-marquee gap-6">
           {duplicatedReviews.map((rev, idx) => (
             <div
               key={`${rev.id}-${idx}`}

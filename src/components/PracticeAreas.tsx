@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { PRACTICE_AREAS, PracticeArea, OFFICE_INFO } from "@/lib/data";
-import { CheckCircle2, ArrowUpRight, Scale, ShieldCheck, HeartHandshake, Award, Clock, FileCheck, ShieldAlert, X } from "lucide-react";
+import { CheckCircle2, ArrowUpRight, Scale, ShieldCheck, HeartHandshake, Award, Clock, FileCheck, ShieldAlert, X, ChevronDown } from "lucide-react";
 import { WhatsAppIcon } from "./SocialIcons";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -35,6 +35,12 @@ function getAreaIcon(iconName: string) {
 
 export function PracticeAreas() {
   const [selectedArea, setSelectedArea] = useState<PracticeArea | null>(null);
+  const [expandedMobileId, setExpandedMobileId] = useState<string | null>(null);
+
+  const toggleMobileExpand = (id: string) => {
+    setExpandedMobileId((prev) => (prev === id ? null : id));
+  };
+
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const cardsContainerRef = useRef<HTMLDivElement>(null);
@@ -115,11 +121,11 @@ export function PracticeAreas() {
         </div>
 
         {/* ========================================================================= */}
-        {/* GRID PRINCIPAL: 4 COLUNAS NO DESKTOP, 2 COLUNAS NO TABLET, 1 NO MOBILE   */}
+        {/* MODELO DESKTOP / TABLET: GRID COM CARDS COMPLETOS                         */}
         {/* ========================================================================= */}
         <div
           ref={cardsContainerRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
+          className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
         >
           {PRACTICE_AREAS.map((area) => (
             <div
@@ -193,6 +199,109 @@ export function PracticeAreas() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* ========================================================================= */}
+        {/* MODELO MOBILE: ACORDEÃO RESUMIDO COM ESCOLHA E DETALHAMENTO                */}
+        {/* ========================================================================= */}
+        <div className="md:hidden space-y-3">
+          {PRACTICE_AREAS.map((area) => {
+            const isExpanded = expandedMobileId === area.id;
+
+            return (
+              <div
+                key={`mobile-${area.id}`}
+                id={`mobile-${area.id}`}
+                className={`rounded-2xl bg-[var(--bg-card)] border transition-all duration-300 overflow-hidden ${
+                  isExpanded
+                    ? "border-[var(--accent)] shadow-md ring-1 ring-[var(--accent)]/30"
+                    : "border-[var(--border-subtle)]/40 shadow-xs"
+                }`}
+              >
+                {/* Linha Resumida (Card Fechado) */}
+                <button
+                  type="button"
+                  onClick={() => toggleMobileExpand(area.id)}
+                  className="w-full p-4 flex items-center justify-between gap-3 text-left cursor-pointer focus:outline-none"
+                  aria-expanded={isExpanded}
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-10 h-10 rounded-xl bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--accent)] flex-shrink-0 shadow-2xs">
+                      {getAreaIcon(area.iconName)}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <span className="font-heading text-xs font-bold text-[var(--accent)]">
+                          {area.number}.
+                        </span>
+                        {area.featured ? (
+                          <span className="px-2 py-0.2 rounded-full bg-[var(--accent)] text-[var(--bg-primary)] font-heading text-[0.5625rem] font-bold uppercase tracking-wider">
+                            Alta Demanda
+                          </span>
+                        ) : (
+                          <span className="text-[0.625rem] uppercase tracking-wider text-[var(--text-muted)] font-heading font-medium">
+                            {area.highlightText}
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="font-heading text-sm font-bold text-[var(--text-main)] truncate">
+                        {area.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="p-1 rounded-lg text-[var(--accent)] flex-shrink-0">
+                    <ChevronDown
+                      className={`w-5 h-5 transition-transform duration-300 ${
+                        isExpanded ? "rotate-180" : "rotate-0 text-[var(--text-muted)]"
+                      }`}
+                    />
+                  </div>
+                </button>
+
+                {/* Conteúdo Expandido do Acordeão Mobile */}
+                {isExpanded && (
+                  <div className="px-4 pb-4 pt-1 border-t border-[var(--border-subtle)]/25 space-y-3.5 animate-fade-in-down">
+                    <p className="font-body text-xs text-[var(--text-muted)] leading-relaxed">
+                      {area.shortDesc}
+                    </p>
+
+                    <div className="space-y-1.5 pt-1">
+                      {area.coverageList.slice(0, 3).map((item, idx) => (
+                        <div key={idx} className="flex items-start gap-2 text-xs font-body text-[var(--text-main)]">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0 mt-0.5" />
+                          <span className="line-clamp-1">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="pt-2 flex flex-col gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedArea(area)}
+                        className="w-full py-2.5 px-3 rounded-xl border border-[var(--border-subtle)]/50 hover:border-[var(--accent)] bg-[var(--bg-secondary)] text-xs font-heading font-semibold text-[var(--text-main)] hover:text-[var(--accent)] transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                      >
+                        <span>Ver Detalhamento Completo</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </button>
+
+                      <a
+                        href={`https://wa.me/${OFFICE_INFO.whatsappNumber}?text=${encodeURIComponent(
+                          `Olá! Gostaria de consultar a advogada sobre ${area.title}.`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full py-2.5 px-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-heading font-bold shadow-xs transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                      >
+                        <WhatsAppIcon className="w-3.5 h-3.5 text-white" />
+                        <span>Consultar no WhatsApp</span>
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
 

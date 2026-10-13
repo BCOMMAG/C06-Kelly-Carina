@@ -1,31 +1,37 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Services from "@/components/Services";
-import Education from "@/components/Education";
-import Reviews from "@/components/Reviews";
-import Process from "@/components/Process";
-import FAQ from "@/components/FAQ";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { InstitutionalPillars } from "@/components/InstitutionalPillars";
+import { About } from "@/components/About";
+import { PracticeAreas } from "@/components/PracticeAreas";
+import { EducationalSection } from "@/components/EducationalSection";
+import { ReviewsSection } from "@/components/ReviewsSection";
+import { HowWeWork } from "@/components/HowWeWork";
+import { FaqSection } from "@/components/FaqSection";
+import { ContactSection } from "@/components/ContactSection";
+import { Footer } from "@/components/Footer";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { ScrollProgressBar } from "@/components/ScrollProgressBar";
+import { DesktopScrollIndicator } from "@/components/DesktopScrollIndicator";
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <main>
+      <ScrollProgressBar />
+      <Navbar />
+      <DesktopScrollIndicator />
+      <main className="flex-1 overflow-x-hidden">
         <Hero />
+        <InstitutionalPillars />
         <About />
-        <Services />
-        <Education />
-        <Reviews />
-        <Process />
-        <FAQ />
-        <Contact />
+        <PracticeAreas />
+        <EducationalSection />
+        <ReviewsSection />
+        <HowWeWork />
+        <FaqSection />
+        <ContactSection />
       </main>
       <Footer />
-      <WhatsAppFloat />
+      <FloatingWhatsApp />
     </>
   );
 }

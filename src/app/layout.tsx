@@ -1,71 +1,77 @@
 import type { Metadata } from "next";
 import { Raleway, Merriweather } from "next/font/google";
-import { SITE } from "@/lib/constants";
 import "./globals.css";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { getLegalServiceSchema } from "@/lib/schema";
+import { OFFICE_INFO } from "@/lib/data";
 
 const raleway = Raleway({
   subsets: ["latin"],
-  variable: "--font-raleway",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-heading",
   display: "swap",
 });
 
 const merriweather = Merriweather({
   subsets: ["latin"],
   weight: ["300", "400", "700", "900"],
-  variable: "--font-merriweather",
+  variable: "--font-body",
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://kellycarina.adv.br";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: `${SITE.name} | Direito Previdenciário em Curitiba`,
-    template: `%s | ${SITE.name}`,
+    default: "Advocacia Kelly Carina | Direito Previdenciário em Curitiba PR",
+    template: "%s | Advocacia Kelly Carina",
   },
-  description: SITE.description,
-  metadataBase: new URL(SITE.url),
+  description:
+    "Assessoria jurídica especializada em Direito Previdenciário em Curitiba e em todo o Brasil. Atuação em Aposentadorias, Auxílio-Doença, BPC/LOAS, Pensão por Morte e Revisões no INSS e na Justiça Federal.",
+  keywords: [
+    "advogada previdenciaria curitiba",
+    "advocacia kelly carina",
+    "kelly carina advogada",
+    "aposentadoria inss curitiba",
+    "auxilio doenca pericia inss",
+    "bpc loas autismo curitiba",
+    "revisao de aposentadoria",
+    "pensao por morte uniao estavel",
+    "advogado previdenciario boqueirao",
+    "planejamento previdenciario parana",
+  ],
+  authors: [{ name: "Dra. Kelly Carina da Silva" }],
+  creator: "Dra. Kelly Carina da Silva",
+  publisher: "Advocacia Kelly Carina",
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
-    title: `${SITE.name} | Direito Previdenciário`,
-    description: SITE.description,
-    url: SITE.url,
-    siteName: SITE.name,
-    locale: SITE.locale,
     type: "website",
+    locale: "pt_BR",
+    url: siteUrl,
+    title: "Advocacia Kelly Carina | Direito Previdenciário em Curitiba PR",
+    description:
+      "Assessoria jurídica especializada e acolhedora em Aposentadorias, Auxílio-Doença, BPC/LOAS e Planejamento Previdenciário.",
+    siteName: "Advocacia Kelly Carina",
     images: [
       {
-        url: SITE.ogImage,
+        url: "/og-image_1_optimized_300.jpg",
         width: 1200,
         height: 630,
-        alt: SITE.name,
-        type: "image/jpeg",
+        alt: "Advocacia Kelly Carina - Direito Previdenciário em Curitiba PR",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: SITE.name,
-    description: SITE.description,
-    images: [SITE.ogImage],
+    title: "Advocacia Kelly Carina | Direito Previdenciário em Curitiba PR",
+    description:
+      "Assessoria jurídica especializada em Aposentadorias, Benefícios por Incapacidade e BPC/LOAS em Curitiba/PR.",
+    images: ["/og-image_1_optimized_300.jpg"],
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico?v=2" },
-      { url: "/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png?v=2", sizes: "16x16", type: "image/png" },
-      { url: "/Favicon-android-chrome-192x192.png?v=2", sizes: "192x192", type: "image/png" },
-      { url: "/Favicon-android-chrome-512x512.png?v=2", sizes: "512x512", type: "image/png" },
-    ],
-    apple: [
-      { url: "/Favicon-apple-touch-icon180x180.png?v=2", sizes: "180x180", type: "image/png" },
-    ],
-    other: [
-      {
-        rel: "apple-touch-icon-precomposed",
-        url: "/Favicon-apple-touch-icon180x180.png?v=2",
-      },
-    ],
-    shortcut: ["/favicon.ico?v=2"],
-  },
-  manifest: "/site.webmanifest",
   robots: {
     index: true,
     follow: true,
@@ -77,6 +83,17 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/Favicon-android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/Favicon-android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/Favicon-apple-touch-icon180x180.png", sizes: "180x180", type: "image/png" }],
+  },
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
@@ -84,97 +101,41 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = getLegalServiceSchema();
+
   return (
-    <html lang="pt-BR" data-theme="light" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning className="dark" data-theme="dark">
       <head>
-        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/Favicon-apple-touch-icon180x180.png?v=2" />
-        <link rel="shortcut icon" href="/favicon.ico?v=2" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <meta property="og:image" content={`${SITE.url}${SITE.ogImage}`} />
-        <meta property="og:image:secure_url" content={`${SITE.url}${SITE.ogImage}`} />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={SITE.name} />
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
-                try {
-                  var saved = localStorage.getItem('theme');
-                  if (saved === 'dark') {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                  } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                  }
-                } catch(e) {
+              try {
+                var theme = localStorage.getItem('kc_theme') || localStorage.getItem('theme');
+                if (theme === 'light') {
+                  document.documentElement.classList.remove('dark');
                   document.documentElement.setAttribute('data-theme', 'light');
+                } else {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.setAttribute('data-theme', 'dark');
                 }
-              })();
+              } catch (e) {
+                document.documentElement.classList.add('dark');
+                document.documentElement.setAttribute('data-theme', 'dark');
+              }
             `,
           }}
         />
-        {/* JSON-LD */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LegalService",
-              name: SITE.name,
-              image: SITE.ogImage,
-              description: SITE.description,
-              url: SITE.url,
-              telephone: "+5541998702590",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Rua das Carmelitas 586, Sala 04",
-                addressLocality: "Curitiba",
-                addressRegion: "PR",
-                postalCode: "81650-000",
-                addressCountry: "BR",
-              },
-              openingHoursSpecification: [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                  ],
-                  opens: "09:00",
-                  closes: "17:00",
-                },
-              ],
-              areaServed: "BR",
-              hasOfferCatalog: {
-                "@type": "OfferCatalog",
-                name: "Direito Previdenciário",
-                itemListElement: [
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Aposentadorias" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Auxílio-Doença" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Pensão por Morte" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "BPC/LOAS" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Salário-Maternidade" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Auxílio-Acidente" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Benefício por Incapacidade" } },
-                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "Revisão de Benefícios" } },
-                ],
-              },
-            }),
-          }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body
-        className={`${raleway.variable} ${merriweather.variable} antialiased`}
-        style={{ backgroundColor: "var(--bg-primary)", color: "var(--text-primary)" }}
+        className={`${raleway.variable} ${merriweather.variable} font-body antialiased selection:bg-[#C9A84C] selection:text-[#0A0C10] bg-[var(--bg-primary)] text-[var(--text-main)]`}
       >
-        {children}
+        <ThemeProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

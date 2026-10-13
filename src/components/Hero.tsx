@@ -1,198 +1,182 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { HERO } from '@/lib/constants';
+import { useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { OFFICE_INFO } from "@/lib/data";
+import { MessageSquare, ShieldCheck, ChevronRight, Award, MapPin } from "lucide-react";
+import { WhatsAppIcon } from "./SocialIcons";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, useGSAP);
+}
 
-export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const badgeRef = useRef<HTMLSpanElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const mobileSubtitleRef = useRef<HTMLParagraphElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const buttonsRef = useRef<HTMLDivElement>(null);
-  const desktopBgRef = useRef<HTMLDivElement>(null);
+export function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const imageDesktopRef = useRef<HTMLDivElement>(null);
+  const imageMobileRef = useRef<HTMLDivElement>(null);
 
-  const whatsappHeroUrl = `https://wa.me/5541998702590?text=${encodeURIComponent(
-    'Olá! Gostaria de conversar com a advogada sobre o meu caso previdenciário.'
-  )}`;
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      if (desktopBgRef.current) {
-        tl.from(desktopBgRef.current, { opacity: 0, duration: 1.2 }, 0);
+  useGSAP(
+    () => {
+      // 1. Efeito de Parallax suave nas imagens de fundo do Hero
+      if (imageDesktopRef.current) {
+        gsap.to(imageDesktopRef.current, {
+          y: 70,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
       }
 
-      tl.from(badgeRef.current, { opacity: 0, y: 20, duration: 0.6 })
-        .from(titleRef.current, { opacity: 0, y: 30, duration: 0.8 }, '-=0.3');
-
-      if (mobileSubtitleRef.current) {
-        tl.from(mobileSubtitleRef.current, { opacity: 0, y: 20, duration: 0.6 }, '-=0.3');
+      if (imageMobileRef.current) {
+        gsap.to(imageMobileRef.current, {
+          y: 45,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
       }
-      if (subtitleRef.current) {
-        tl.from(subtitleRef.current, { opacity: 0, y: 20, duration: 0.6 }, '-=0.4');
+
+      // 2. Animação de entrada dos textos e botões
+      if (contentRef.current) {
+        gsap.fromTo(
+          contentRef.current,
+          { opacity: 0, y: 35 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: "power2.out",
+            delay: 0.1,
+          }
+        );
       }
-
-      tl.from(buttonsRef.current, { opacity: 0, y: 20, scale: 0.95, duration: 0.6 }, '-=0.3');
-
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top center',
-        end: 'bottom center',
-        toggleActions: 'play none none reverse',
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+    },
+    { scope: heroRef }
+  );
 
   return (
     <section
-      ref={sectionRef}
-      id="hero"
-      className="relative min-h-[100dvh] flex items-center overflow-hidden"
-      style={{ backgroundColor: 'var(--bg-primary)' }}
+      id="inicio"
+      ref={heroRef}
+      className="relative w-full h-[100dvh] min-h-[100dvh] flex flex-col justify-between pt-20 sm:pt-24 lg:pt-28 pb-4 sm:pb-6 lg:pb-8 overflow-hidden"
     >
-      {/* Desktop Background Image — header_Desktop.jpeg (Apenas Desktop) */}
+      {/* Imagem de Fundo Desktop (Landscape / >= lg) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div ref={imageDesktopRef} className="hidden lg:block absolute inset-0 -top-10 -bottom-10 will-change-transform">
+          <Image
+            src="/header_Desktop.jpeg"
+            alt="Advocacia Kelly Carina - Direito Previdenciário em Curitiba PR"
+            fill
+            priority
+            quality={92}
+            className="object-cover object-[center_32%] brightness-[0.82] contrast-[1.05]"
+            sizes="100vw"
+          />
+        </div>
+
+        {/* Imagem de Fundo Mobile & Tablet Portrait (< lg) */}
+        <div ref={imageMobileRef} className="block lg:hidden absolute inset-0 -top-8 -bottom-8 will-change-transform">
+          <Image
+            src="/header_mobile.jpeg"
+            alt="Advocacia Kelly Carina - Advogada Previdenciária Curitiba"
+            fill
+            priority
+            quality={92}
+            className="object-cover object-[center_25%] sm:object-[center_30%] brightness-[0.82] contrast-[1.05]"
+            sizes="100vw"
+          />
+        </div>
+
+        {/* Gradientes e Overlays mesclando Preto Profundo, Grafite e Dourado */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0C10]/95 via-[#0A0C10]/85 to-[#1C202A]/40 lg:from-[#0A0C10]/92 lg:via-[#0A0C10]/65 lg:via-55% lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0C10]/95 via-transparent to-[#0A0C10]/60 lg:from-[#0A0C10]/65 lg:via-transparent lg:to-transparent" />
+      </div>
+
       <div
-        ref={desktopBgRef}
-        className="hidden lg:block absolute inset-0 z-0 pointer-events-none overflow-hidden"
+        ref={contentRef}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex-1 flex flex-col justify-center lg:justify-between will-change-transform py-4 sm:py-6 lg:py-0"
       >
-        <Image
-          src="/header_Desktop.jpeg"
-          alt="Kelly Carina Advocacia"
-          fill
-          className="object-cover object-right"
-          priority
-          sizes="100vw"
-        />
-      </div>
+        {/* Topo do Hero: Badge + Headline Principal */}
+        <div className="pt-2 sm:pt-4 lg:pt-2 max-w-3xl animate-fade-in-down mb-6 sm:mb-8 lg:mb-0">
+          {/* Badge de Autoridade Dourado Institucional */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C9A84C]/40 bg-[#0A0C10]/80 backdrop-blur-md text-xs sm:text-sm font-heading tracking-wide text-[#F6F4EE] mb-3 sm:mb-4 shadow-sm">
+            <ShieldCheck className="w-4 h-4 text-[#C9A84C]" />
+            <span>Advocacia Kelly Carina • OAB/PR 76.720 • Direito Previdenciário</span>
+          </div>
 
-      {/* Mobile Background Image — header_mobile.jpeg (Preenchendo completamente) */}
-      <div
-        className="lg:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden"
-      >
-        <Image
-          src="/header_mobile.jpeg"
-          alt="Kelly Carina Advocacia"
-          fill
-          className="object-cover object-top"
-          priority
-          sizes="100vw"
-        />
-      </div>
+          {/* Headline Principal */}
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] leading-[1.12] sm:leading-[1.1] tracking-tight text-[#F6F4EE] font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
+            Defesa Técnica e Acolhimento em{" "}
+            <span className="text-gold-gradient underline decoration-[#C9A84C]/40 underline-offset-8">
+              Direito Previdenciário
+            </span>
+          </h1>
 
-      {/* Subtle gold gradient overlay */}
-      <div className="absolute inset-0 pointer-events-none opacity-10">
-        <div
-          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px]"
-          style={{ background: 'radial-gradient(circle, var(--color-gold) 0%, transparent 70%)' }}
-        />
-      </div>
+          {/* Subtítulo */}
+          <p className="font-body text-sm sm:text-base md:text-lg text-[#F6F4EE]/90 max-w-2xl mt-4 sm:mt-5 leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
+            Assessoria jurídica especializada na conquista e revisão da sua aposentadoria, restabelecimento de auxílio-doença, BPC/LOAS e planejamento previdenciário no INSS e na Justiça Federal.
+          </p>
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10 w-full">
-        {/* Mobile: justify-between para topo e fundo; Desktop: grid alinhada */}
-        <div className="flex flex-col justify-between min-h-[100dvh] pt-24 pb-8 sm:pt-28 sm:pb-12 lg:grid lg:grid-cols-12 lg:gap-12 lg:items-center lg:py-24 lg:min-h-screen">
-          
-          <div className="flex flex-col justify-between flex-1 lg:justify-center lg:flex-initial gap-6 lg:col-span-8 xl:col-span-7">
-            
-            {/* Bloco Superior (Mobile: mais perto do topo) */}
-            <div className="flex flex-col gap-3 sm:gap-4 pt-1">
-              {/* Badge */}
-              <span
-                ref={badgeRef}
-                className="inline-block self-start px-4 py-1.5 sm:py-2 text-xs sm:text-sm tracking-widest uppercase rounded-full border shadow-sm font-semibold"
-                style={{
-                  borderColor: 'var(--color-gold)',
-                  color: '#8B6914',
-                  backgroundColor: 'rgba(201, 168, 76, 0.14)',
-                }}
-              >
-                Especialista em Direito Previdenciário
-              </span>
+          {/* Botões de Ação */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
+            <a
+              href={OFFICE_INFO.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-pill bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 sm:px-8 text-sm sm:text-base shadow-[0_4px_22px_rgba(37,211,102,0.4)] hover-lift transition-all gap-2.5 cursor-pointer font-bold justify-center"
+            >
+              <WhatsAppIcon className="w-5 h-5 text-white" />
+              <span>Consultar Advogada no WhatsApp</span>
+            </a>
 
-              {/* Title — Permanece sempre em preto no modo claro e escuro */}
-              <h1
-                ref={titleRef}
-                className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight !text-[#0A0A0A]"
-                style={{ fontFamily: 'var(--font-heading)', color: '#0A0A0A' }}
-              >
-                {/* Mobile: fluxo original */}
-                <span className="lg:hidden">
-                  {HERO.tagline}
-                </span>
+            <Link
+              href="#atuacao"
+              className="btn-pill bg-white/10 hover:bg-white/20 text-[#F6F4EE] border border-white/25 backdrop-blur-md py-3.5 px-6 text-sm sm:text-base hover-lift transition-all gap-2 justify-center font-heading font-semibold"
+            >
+              <span>Conhecer Especialidades</span>
+              <ChevronRight className="w-4 h-4 text-[#C9A84C]" />
+            </Link>
+          </div>
+        </div>
 
-                {/* Desktop: quebras de linha específicas */}
-                <span className="hidden lg:inline">
-                  DEFENDENDO SEUS<br />
-                  DIREITOS!!<br />
-                  CUIDANDO DO SEU FUTURO!!
-                </span>
-              </h1>
+        {/* Rodapé do Hero: Badges de Destaque */}
+        <div className="pt-2 sm:pt-4 border-t border-white/15 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-[#F6F4EE]/90 text-xs sm:text-sm font-heading">
+          <div className="flex items-center gap-2">
+            <Award className="w-4 h-4 text-[#C9A84C] flex-shrink-0" />
+            <span className="font-semibold">+10 Anos de Prática Jurídica</span>
+          </div>
 
-              {/* Subtitle Apenas no Mobile — Bem abaixo do H1, em preto absoluto (#000000) */}
-              <p
-                ref={mobileSubtitleRef}
-                className="lg:hidden text-base sm:text-lg leading-relaxed font-semibold !text-black mt-1"
-              >
-                {HERO.subtitle}
-              </p>
-            </div>
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-[#C9A84C] flex-shrink-0" />
+            <span className="font-semibold">Pós-Graduação em Previdência</span>
+          </div>
 
-            {/* Bloco Inferior (Mobile: botões perto do fundo; Desktop: subtítulo + botões) */}
-            <div className="flex flex-col gap-4 sm:gap-6 mt-auto lg:mt-0 pb-2">
-              {/* Subtitle Apenas no Desktop */}
-              <p
-                ref={subtitleRef}
-                className="hidden lg:block text-base sm:text-lg lg:text-xl max-w-xl leading-relaxed font-medium !text-[#2A2A2A]"
-              >
-                {HERO.subtitle}
-              </p>
+          <div className="flex items-center gap-2">
+            <MapPin className="w-4 h-4 text-[#C9A84C] flex-shrink-0" />
+            <span className="font-semibold">Sede na Rua das Carmelitas, Curitiba</span>
+          </div>
 
-              {/* Dois Botões: 'Conversar com advogada' e 'Veja os seus direitos' */}
-              <div
-                ref={buttonsRef}
-                className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4"
-              >
-                {/* Botão 1: Conversar com advogada (WhatsApp — Fundo branco e bordas douradas) */}
-                <Link
-                  href={whatsappHeroUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-semibold uppercase tracking-wider transition-all duration-300 hover:scale-105 active:scale-95 bg-white text-[#0A0A0A] border-2 border-[#C9A84C] hover:border-[#8B6914] hover:bg-[#FFFDF7] shadow-[0_4px_20px_rgba(201,168,76,0.35)] hover:shadow-[0_8px_28px_rgba(201,168,76,0.55)]"
-                  style={{
-                    boxShadow: '0 4px 20px rgba(201, 168, 76, 0.35)',
-                  }}
-                >
-                  <svg className="w-5 h-5 shrink-0 text-[#25D366]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                  </svg>
-                  <span>Conversar com advogada</span>
-                </Link>
-
-                {/* Botão 2: Veja os seus direitos */}
-                <a
-                  href="#entenda-seus-direitos"
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl text-sm sm:text-base font-semibold uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:bg-[#C9A84C]/15 border border-[#C9A84C]/70 text-[#0A0A0A] bg-white/70 backdrop-blur-sm shadow-sm"
-                >
-                  <span>Veja os seus direitos</span>
-                  <svg className="w-4 h-4 text-[#8B6914]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0" />
+            <span className="font-semibold text-emerald-300">Atendimento Presencial & Online</span>
           </div>
         </div>
       </div>
     </section>
   );
 }
+
+export default Hero;

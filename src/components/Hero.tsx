@@ -107,10 +107,10 @@ export function Hero() {
 
       <div
         ref={contentRef}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full h-full flex-1 flex flex-col justify-between lg:justify-center will-change-transform pt-20 sm:pt-24 lg:pt-0 pb-20 xs:pb-24 sm:pb-28 lg:pb-0"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full h-full flex-1 flex flex-col justify-between lg:justify-center will-change-transform pt-24 xs:pt-28 sm:pt-32 lg:pt-0 pb-28 xs:pb-32 sm:pb-36 lg:pb-0"
       >
-        {/* Topo no Mobile (Quadrado Superior) / Centralizado no Desktop: Headline e Subtítulo */}
-        <div className="max-w-3xl animate-fade-in-down pt-1 sm:pt-3 lg:pt-0">
+        {/* Topo no Mobile: Headline e Subtítulo descidos um pouco mais longe do topo */}
+        <div className="max-w-3xl animate-fade-in-down pt-2 sm:pt-4 lg:pt-0">
           <h1 className="font-heading text-[1.85rem] xs:text-[2.15rem] sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] leading-[1.16] sm:leading-[1.1] tracking-tight text-[#F6F4EE] font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
             Defesa Técnica e Acolhimento em{" "}
             <span className="text-gold-gradient">
@@ -123,7 +123,7 @@ export function Hero() {
           </p>
         </div>
 
-        {/* Base no Mobile (Quadrado Inferior) / Junto ao texto no Desktop */}
+        {/* Base no Mobile: Botões de Ação subidos um pouco mais */}
         <div className="max-w-3xl flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 mt-auto lg:mt-8">
           <a
             href={OFFICE_INFO.whatsappUrl}

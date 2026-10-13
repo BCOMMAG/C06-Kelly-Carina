@@ -88,28 +88,7 @@ export function Navbar() {
 
   return (
     <>
-      {/* 1. LOGO MOBILE FIXA SEPARADA — DESCONECTADA DA ALTURA DO MENU E ELEVADA */}
-      <div className="lg:hidden fixed top-1 sm:top-1.5 left-2 sm:left-3 z-[45] pointer-events-none">
-        <Link
-          href="/"
-          onClick={handleLogoClick}
-          className="flex items-center group focus:outline-none pointer-events-auto"
-          aria-label={`Ir para a página inicial da ${OFFICE_INFO.name}`}
-        >
-          <div className="relative h-8 sm:h-9 w-20 sm:w-24 max-w-[26vw] transition-transform duration-300 group-hover:scale-105">
-            <Image
-              src={currentLogo}
-              alt={OFFICE_INFO.name}
-              fill
-              priority
-              className="object-contain object-left drop-shadow-md"
-              sizes="(max-width: 640px) 80px, 100px"
-            />
-          </div>
-        </Link>
-      </div>
-
-      {/* 2. BARRA DE NAVEGAÇÃO PRINCIPAL */}
+      {/* BARRA DE NAVEGAÇÃO PRINCIPAL */}
       <header
         className={`fixed top-0 left-0 right-0 w-full max-w-full z-40 transition-all duration-300 ${
           isScrolled
@@ -117,11 +96,29 @@ export function Navbar() {
             : "bg-transparent py-3 sm:py-4"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="relative min-h-[2.5rem] sm:min-h-[3rem] flex items-center justify-between gap-2 sm:gap-4">
             
-            {/* Espaçador Mobile para proteger a área da logo sem afetar a altura dos botões */}
-            <div className="lg:hidden w-20 sm:w-24 max-w-[26vw] h-6 flex-shrink-0 pointer-events-none" />
+            {/* Logo Mobile: Integrada e perfeitamente centralizada na mesma linha dos botões */}
+            <div className="lg:hidden flex items-center">
+              <Link
+                href="/"
+                onClick={handleLogoClick}
+                className="flex items-center group focus:outline-none"
+                aria-label={`Ir para a página inicial da ${OFFICE_INFO.name}`}
+              >
+                <div className="relative h-9 w-24 max-w-[30vw] transition-transform duration-300 group-hover:scale-105">
+                  <Image
+                    src={currentLogo}
+                    alt={OFFICE_INFO.name}
+                    fill
+                    priority
+                    className="object-contain object-left drop-shadow-sm"
+                    sizes="110px"
+                  />
+                </div>
+              </Link>
+            </div>
 
             {/* Logo Desktop: Reduzida em ~40% para elegância e harmonia */}
             <div className="hidden lg:flex items-center justify-start relative flex-shrink-0 w-32 xl:w-36 h-10 pointer-events-none">

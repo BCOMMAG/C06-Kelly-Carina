@@ -71,7 +71,7 @@ export function Hero() {
     <section
       id="inicio"
       ref={heroRef}
-      className="relative w-full h-[100dvh] min-h-[100dvh] flex flex-col justify-center pt-16 sm:pt-20 lg:pt-24 pb-6 overflow-hidden"
+      className="relative w-full h-[100dvh] min-h-[100dvh] flex flex-col justify-between lg:justify-center overflow-hidden"
     >
       {/* Imagem de Fundo Desktop (Landscape / >= lg) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -95,7 +95,7 @@ export function Hero() {
             fill
             priority
             quality={92}
-            className="object-cover object-[center_25%] sm:object-[center_30%] brightness-[0.82] contrast-[1.05]"
+            className="object-cover object-[center_30%] sm:object-[center_30%] brightness-[0.85] contrast-[1.05]"
             sizes="100vw"
           />
         </div>
@@ -107,43 +107,41 @@ export function Hero() {
 
       <div
         ref={contentRef}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col justify-center will-change-transform py-4 sm:py-6"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full h-full flex-1 flex flex-col justify-between lg:justify-center will-change-transform pt-20 sm:pt-24 lg:pt-0 pb-5 sm:pb-8 lg:pb-0"
       >
-        {/* Headline Principal + CTA */}
-        <div className="max-w-3xl animate-fade-in-down">
-          {/* Headline Principal */}
-          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] leading-[1.12] sm:leading-[1.1] tracking-tight text-[#F6F4EE] font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
+        {/* Topo no Mobile (Box 2) / Centralizado no Desktop: Headline e Subtítulo */}
+        <div className="max-w-3xl animate-fade-in-down pt-2 sm:pt-4 lg:pt-0">
+          <h1 className="font-heading text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] leading-[1.15] sm:leading-[1.1] tracking-tight text-[#F6F4EE] font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
             Defesa Técnica e Acolhimento em{" "}
             <span className="text-gold-gradient">
               Direito Previdenciário
             </span>
           </h1>
 
-          {/* Subtítulo */}
-          <p className="font-body text-sm sm:text-base md:text-lg text-[#F6F4EE]/90 max-w-2xl mt-4 sm:mt-5 leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
+          <p className="font-body text-xs xs:text-sm sm:text-base md:text-lg text-[#F6F4EE]/90 max-w-2xl mt-2.5 sm:mt-4 leading-relaxed drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
             Assessoria jurídica especializada na conquista e revisão da sua aposentadoria, restabelecimento de auxílio-doença, BPC/LOAS e planejamento previdenciário no INSS e na Justiça Federal.
           </p>
+        </div>
 
-          {/* Botões de Ação */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
-            <a
-              href={OFFICE_INFO.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-pill bg-[#25D366] hover:bg-[#20ba59] text-white py-3.5 px-6 sm:px-8 text-sm sm:text-base shadow-[0_4px_22px_rgba(37,211,102,0.4)] hover-lift transition-all gap-2.5 cursor-pointer font-bold justify-center"
-            >
-              <WhatsAppIcon className="w-5 h-5 text-white" />
-              <span>Consultar Advogada no WhatsApp</span>
-            </a>
+        {/* Base no Mobile (Box 3) / Junto ao texto no Desktop */}
+        <div className="max-w-3xl flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 mt-auto lg:mt-8 pb-2 sm:pb-4 lg:pb-0">
+          <a
+            href={OFFICE_INFO.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-pill bg-[#25D366] hover:bg-[#20ba59] text-white py-3 sm:py-3.5 px-6 sm:px-8 text-sm sm:text-base shadow-[0_4px_22px_rgba(37,211,102,0.4)] hover-lift transition-all gap-2.5 cursor-pointer font-bold justify-center"
+          >
+            <WhatsAppIcon className="w-5 h-5 text-white" />
+            <span>Consultar Advogada no WhatsApp</span>
+          </a>
 
-            <Link
-              href="#atuacao"
-              className="btn-pill bg-white/10 hover:bg-white/20 text-[#F6F4EE] border border-white/25 backdrop-blur-md py-3.5 px-6 text-sm sm:text-base hover-lift transition-all gap-2 justify-center font-heading font-semibold"
-            >
-              <span>Conhecer Especialidades</span>
-              <ChevronRight className="w-4 h-4 text-[#C9A84C]" />
-            </Link>
-          </div>
+          <Link
+            href="#atuacao"
+            className="btn-pill bg-white/10 hover:bg-white/20 text-[#F6F4EE] border border-white/25 backdrop-blur-md py-3 sm:py-3.5 px-6 text-sm sm:text-base hover-lift transition-all gap-2 justify-center font-heading font-semibold"
+          >
+            <span>Conhecer Especialidades</span>
+            <ChevronRight className="w-4 h-4 text-[#C9A84C]" />
+          </Link>
         </div>
       </div>
     </section>

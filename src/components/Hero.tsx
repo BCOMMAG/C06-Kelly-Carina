@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { OFFICE_INFO } from "@/lib/data";
-import { MessageSquare, ShieldCheck, ChevronRight, Award, MapPin } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { WhatsAppIcon } from "./SocialIcons";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -71,7 +71,7 @@ export function Hero() {
     <section
       id="inicio"
       ref={heroRef}
-      className="relative w-full h-[100dvh] min-h-[100dvh] flex flex-col justify-between pt-20 sm:pt-24 lg:pt-28 pb-4 sm:pb-6 lg:pb-8 overflow-hidden"
+      className="relative w-full h-[100dvh] min-h-[100dvh] flex flex-col justify-center pt-16 sm:pt-20 lg:pt-24 pb-6 overflow-hidden"
     >
       {/* Imagem de Fundo Desktop (Landscape / >= lg) */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -107,20 +107,14 @@ export function Hero() {
 
       <div
         ref={contentRef}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex-1 flex flex-col justify-center lg:justify-between will-change-transform py-4 sm:py-6 lg:py-0"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full flex flex-col justify-center will-change-transform py-4 sm:py-6"
       >
-        {/* Topo do Hero: Badge + Headline Principal */}
-        <div className="pt-2 sm:pt-4 lg:pt-2 max-w-3xl animate-fade-in-down mb-6 sm:mb-8 lg:mb-0">
-          {/* Badge de Autoridade Dourado Institucional */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#C9A84C]/40 bg-[#0A0C10]/80 backdrop-blur-md text-xs sm:text-sm font-heading tracking-wide text-[#F6F4EE] mb-3 sm:mb-4 shadow-sm">
-            <ShieldCheck className="w-4 h-4 text-[#C9A84C]" />
-            <span>Advocacia Kelly Carina • OAB/PR 76.720 • Direito Previdenciário</span>
-          </div>
-
+        {/* Headline Principal + CTA */}
+        <div className="max-w-3xl animate-fade-in-down">
           {/* Headline Principal */}
           <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.6rem] leading-[1.12] sm:leading-[1.1] tracking-tight text-[#F6F4EE] font-bold drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]">
             Defesa Técnica e Acolhimento em{" "}
-            <span className="text-gold-gradient underline decoration-[#C9A84C]/40 underline-offset-8">
+            <span className="text-gold-gradient">
               Direito Previdenciário
             </span>
           </h1>
@@ -149,29 +143,6 @@ export function Hero() {
               <span>Conhecer Especialidades</span>
               <ChevronRight className="w-4 h-4 text-[#C9A84C]" />
             </Link>
-          </div>
-        </div>
-
-        {/* Rodapé do Hero: Badges de Destaque */}
-        <div className="pt-2 sm:pt-4 border-t border-white/15 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-[#F6F4EE]/90 text-xs sm:text-sm font-heading">
-          <div className="flex items-center gap-2">
-            <Award className="w-4 h-4 text-[#C9A84C] flex-shrink-0" />
-            <span className="font-semibold">+10 Anos de Prática Jurídica</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-[#C9A84C] flex-shrink-0" />
-            <span className="font-semibold">Pós-Graduação em Previdência</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-[#C9A84C] flex-shrink-0" />
-            <span className="font-semibold">Sede na Rua das Carmelitas, Curitiba</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping flex-shrink-0" />
-            <span className="font-semibold text-emerald-300">Atendimento Presencial & Online</span>
           </div>
         </div>
       </div>

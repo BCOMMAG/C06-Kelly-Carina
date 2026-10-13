@@ -89,21 +89,21 @@ export function Navbar() {
   return (
     <>
       {/* 1. LOGO MOBILE FIXA SEPARADA — DESCONECTADA DA ALTURA DO MENU E ELEVADA */}
-      <div className="lg:hidden fixed top-0 sm:top-0.5 left-2 sm:left-3 z-[45] pointer-events-none">
+      <div className="lg:hidden fixed top-1 sm:top-1.5 left-2 sm:left-3 z-[45] pointer-events-none">
         <Link
           href="/"
           onClick={handleLogoClick}
           className="flex items-center group focus:outline-none pointer-events-auto"
           aria-label={`Ir para a página inicial da ${OFFICE_INFO.name}`}
         >
-          <div className="relative h-14 sm:h-15 w-28 sm:w-32 max-w-[32vw] transition-transform duration-300 group-hover:scale-105">
+          <div className="relative h-8 sm:h-9 w-20 sm:w-24 max-w-[26vw] transition-transform duration-300 group-hover:scale-105">
             <Image
               src={currentLogo}
               alt={OFFICE_INFO.name}
               fill
               priority
               className="object-contain object-left drop-shadow-md"
-              sizes="(max-width: 640px) 120px, 135px"
+              sizes="(max-width: 640px) 80px, 100px"
             />
           </div>
         </Link>
@@ -121,25 +121,25 @@ export function Navbar() {
           <div className="relative min-h-[2.5rem] sm:min-h-[3rem] flex items-center justify-between gap-2 sm:gap-4">
             
             {/* Espaçador Mobile para proteger a área da logo sem afetar a altura dos botões */}
-            <div className="lg:hidden w-28 sm:w-32 max-w-[32vw] h-6 flex-shrink-0 pointer-events-none" />
+            <div className="lg:hidden w-20 sm:w-24 max-w-[26vw] h-6 flex-shrink-0 pointer-events-none" />
 
-            {/* Logo Desktop: Totalmente Desacoplada da altura da barra do menu */}
-            <div className="hidden lg:flex items-center justify-start relative flex-shrink-0 w-52 xl:w-60 h-10 pointer-events-none">
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 mt-1 xl:mt-1.5 pointer-events-auto">
+            {/* Logo Desktop: Reduzida em ~40% para elegância e harmonia */}
+            <div className="hidden lg:flex items-center justify-start relative flex-shrink-0 w-32 xl:w-36 h-10 pointer-events-none">
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 pointer-events-auto">
                 <Link
                   href="/"
                   onClick={handleLogoClick}
                   className="flex items-center group focus:outline-none"
                   aria-label={`Ir para a página inicial da ${OFFICE_INFO.name}`}
                 >
-                  <div className="relative h-16 xl:h-20 w-52 xl:w-60 transition-transform duration-300 group-hover:scale-105">
+                  <div className="relative h-10 xl:h-12 w-32 xl:w-36 transition-transform duration-300 group-hover:scale-105">
                     <Image
                       src={currentLogo}
                       alt={OFFICE_INFO.name}
                       fill
                       priority
                       className="object-contain object-left drop-shadow-sm"
-                      sizes="(min-width: 1280px) 300px, 250px"
+                      sizes="(min-width: 1280px) 180px, 150px"
                     />
                   </div>
                 </Link>
@@ -156,7 +156,7 @@ export function Navbar() {
                 Início
               </Link>
 
-              {/* Submenu 1: O Escritório */}
+              {/* Submenu 1: Escritório */}
               <div
                 ref={officeRef}
                 className="relative"
@@ -169,7 +169,7 @@ export function Navbar() {
                   className="inline-flex items-center gap-1.5 transition-colors py-2 focus:outline-none cursor-pointer hover:text-[var(--accent)] font-semibold"
                   aria-expanded={officeDropdownOpen}
                 >
-                  <span className="editorial-link">O Escritório</span>
+                  <span className="editorial-link">Escritório</span>
                   <ChevronDown
                     className={`w-3.5 h-3.5 transition-transform duration-200 ${
                       officeDropdownOpen ? "rotate-180 text-[var(--accent)]" : "opacity-70"
@@ -367,7 +367,7 @@ export function Navbar() {
                   }}
                   className="flex items-center"
                 >
-                  <div className="relative h-12 w-28">
+                  <div className="relative h-8 w-20 sm:h-9 sm:w-24">
                     <Image
                       src={drawerLogo}
                       alt={OFFICE_INFO.name}
@@ -397,14 +397,14 @@ export function Navbar() {
                   Início
                 </Link>
 
-                {/* Dropdown Mobile: O Escritório */}
+                {/* Dropdown Mobile: Escritório */}
                 <div>
                   <button
                     type="button"
                     onClick={() => setMobileOfficeOpen(!mobileOfficeOpen)}
                     className="w-full flex items-center justify-between px-4 py-3 rounded-xl font-heading text-base font-bold text-[var(--text-main)] hover:bg-[var(--bg-secondary)] hover:text-[var(--accent)] transition-colors"
                   >
-                    <span>O Escritório</span>
+                    <span>Escritório</span>
                     <ChevronDown
                       className={`w-4 h-4 transition-transform duration-200 ${
                         mobileOfficeOpen ? "rotate-180 text-[var(--accent)]" : ""

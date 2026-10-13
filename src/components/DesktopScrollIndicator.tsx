@@ -11,7 +11,7 @@ interface SectionItem {
 const SECTIONS: SectionItem[] = [
   { id: "inicio", num: "01", name: "Início" },
   { id: "pilares", num: "02", name: "Pilares" },
-  { id: "sobre", num: "03", name: "O Escritório" },
+  { id: "sobre", num: "03", name: "Escritório" },
   { id: "atuacao", num: "04", name: "Especialidades" },
   { id: "educativo", num: "05", name: "Artigos" },
   { id: "avaliacoes", num: "06", name: "Avaliações" },

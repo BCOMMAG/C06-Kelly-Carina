@@ -701,7 +701,7 @@ export const FAQ_DATA = FAQ_CATEGORIES;
 
 export const NAV_LINKS = [
   { label: "Início", href: "#inicio" },
-  { label: "O Escritório", href: "#sobre" },
+  { label: "Escritório", href: "#sobre" },
   { label: "Pilares", href: "#pilares" },
   { label: "Especialidades", href: "#especialidades" },
   { label: "Artigos Didáticos", href: "#educativo" },
